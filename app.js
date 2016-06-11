@@ -5,35 +5,35 @@ var posts = $.ajax({
 })
 .done(function(data) {
   //handle successful response
-  //JSON.parse(data);
-  var jData = data;
+  newPosts(data);
 
   // processResponse(data);
 })
 .fail(function() {
   //Handle errors
-  // handleError();
+  handleError();
 })
 .always(function() {
   //Always update the UI with status
 });
 
 
-    var redditData = posts.responseJSON.data.children;
-    var author = redditData[i].data.author;
-    var title = redditData[i].data.title;
-    var forumText = redditData[i].data.selftext;
-    var forumDate = redditData[i].data.created_utc;
+
+    // var redditData = posts.responseJSON;
 
 
+  function newPosts(response){
+  var redditContainer = document.getElementById('reddit');
+  var mainContainer = document.createElement('div');
+  mainContainer.className = "subreddit";
+  redditContainer.appendChild(mainContainer);
 
-function newPosts(posts){
-  for (var i = 0; i < posts.length; i++){
+  var results = response.data.children;
 
-    var redditContainer = document.getElementById('reddit');
-    var mainContainer = document.createElement('div');
-    mainContainer.className = "subreddit";
-    redditContainer.appendChild(mainContainer);
+    for (var i = 0; i < results.length; i++){
+    var author = results[i].data.author;
+    var title = results[i].data.title;
+    var forumText = results[i].data.selftext;
 
     var headerDiv = document.createElement('div');
     headerDiv.className = "title";
@@ -50,9 +50,6 @@ function newPosts(posts){
     authorDiv.innerHTML = "author";
     mainContainer.appendChild(authorDiv);
 
-    var dateDiv = document.createElement('div');
-    dateDiv.className = "date";
-    dateDiv.innerHTML = forumDate;
-    mainContainer.appendChild(dateDiv);
   }
+  return mainContainer;
 }

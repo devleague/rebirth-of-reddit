@@ -19,15 +19,15 @@ var posts = $.ajax({
 
 
     var redditContainer = document.getElementById('reddit');
-    var buttonDiv = document.createElement('div');
-    buttonDiv.className = "button";
-    var fetchButton = document.createElement('BUTTON');
-    var buttonText = document.createTextNode("Fetch Post");
-    fetchButton.appendChild(buttonText);
-    buttonDiv.appendChild(fetchButton);
+    // var buttonDiv = document.createElement('div');
+    // buttonDiv.className = "button";
+    // var fetchButton = document.createElement('BUTTON');
+    // var buttonText = document.createTextNode("Fetch Post");
+    // fetchButton.appendChild(buttonText);
+    // buttonDiv.appendChild(fetchButton);
     var mainContainer = document.createElement('div');
     mainContainer.className = "subreddit";
-    redditContainer.appendChild(buttonDiv);
+    // redditContainer.appendChild(buttonDiv);
     redditContainer.appendChild(mainContainer);
 
 
@@ -46,7 +46,7 @@ var posts = $.ajax({
 
       var authorDiv = document.createElement('div');
       authorDiv.className = "author";
-      authorDiv.innerHTML = "author";
+      authorDiv.innerHTML = author;
       mainContainer.appendChild(authorDiv);
 
       var bodyTextDiv = document.createElement('div');
@@ -59,5 +59,5 @@ var posts = $.ajax({
   return mainContainer;
 }
 
-    fetchButton.addEventListener('click', newPosts);
+    // fetchButton.addEventListener('click', newPosts);
 

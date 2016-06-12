@@ -1,13 +1,6 @@
 $mainColor: green;
 
-ul {
-  li {
-    color: lighten($mainColor, 50%);
-  }
-  a {
-    & a:hover {
-    color: darken($mainColor, 25%);
-    }
-    text-decoration: none;
-  }
+h1{
+  color: blue;
+  border-style: solid;
 }

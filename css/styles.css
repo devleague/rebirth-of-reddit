@@ -1,5 +1,7 @@
 ul li {
-  color: white; }
+  color: #80ff80; }
 
-ul ul a:hover {
-  color: maroon; }
+ul a {
+  text-decoration: none; }
+  ul a a:hover {
+    color: #000100; }

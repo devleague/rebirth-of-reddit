@@ -1,10 +1,13 @@
-$mainColor: red;
+$mainColor: green;
 
 ul {
   li {
     color: lighten($mainColor, 50%);
   }
-  ul a:hover {
+  a {
+    & a:hover {
     color: darken($mainColor, 25%);
+    }
+    text-decoration: none;
   }
 }

@@ -8,9 +8,9 @@ gulp.task('styles', function() {
   gulp
     .src('scss/styles.scss')
     //Running through sass compiler
-    .pipe(sass())
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('css'));
-    console.log('this worked');
+    console.log('Styles have changed');
 });
 /*
 ⇒  gulp
@@ -33,8 +33,14 @@ HIIII
 
 //gitgutter
 
-gulp.task('upkeep', function () {
+//Before you run, run the watch and styles
+gulp.task('watch', ['styles'], function () {
   gulp.watch('js/*',  function () {
     console.log('Folder has updates');
   });
+  //When files have changed in these,
+  //we are going to run styles
+  gulp.watch('scss/**/*', ['styles']);
 });
+
+gulp.task('default', ['styles']);

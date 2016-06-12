@@ -1,5 +1,5 @@
 ul li {
   color: white; }
 
-ul:hover {
+ul ul a:hover {
   color: maroon; }

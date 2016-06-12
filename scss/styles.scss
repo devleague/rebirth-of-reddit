@@ -4,7 +4,7 @@ ul {
   li {
     color: lighten($mainColor, 50%);
   }
-  &:hover {
+  ul a:hover {
     color: darken($mainColor, 25%);
   }
 }

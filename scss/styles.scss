@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans);
+
+$mainColor = 'green';
+
+li {
+  color: #mainColor;
+}
+
+body{
+  font-family: 'Alegreya Sans', sans-serif;
+}
+
+div.posts {
+  border-style: solid;
+  border-width: thin;
+  margin: 10px;
+
+}
+
+div.title {
+  border-bottom: solid;
+  border-width: 2px;
+}
+
+div.forumText {
+  margin: 15px;
+}

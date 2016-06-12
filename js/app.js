@@ -1,5 +1,4 @@
 var postContainer = $("posts");
-
 var dataSet = $.ajax({
   method: 'GET',
   url: 'https://www.reddit.com/r/photoshopbattles.json',

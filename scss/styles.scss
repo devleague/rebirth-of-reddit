@@ -1,0 +1,10 @@
+$mainColor: red;
+
+ul {
+  li {
+    color: lighten($mainColor, 50%);
+  }
+  &:hover {
+    color: darken($mainColor, 25%);
+  }
+}

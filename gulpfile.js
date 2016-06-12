@@ -1,4 +1,17 @@
 var gulp = require('gulp');//gulp was a saved as a dependency
+//Import gulp-sass
+var sass = require('gulp-sass');
+
+//Anything related to files will happen with this
+gulp.task('styles', function() {
+  //Take my source files, and output them into my css folder
+  gulp
+    .src('scss/styles.scss')
+    //Running through sass compiler
+    .pipe(sass())
+    .pipe(gulp.dest('css'));
+    console.log('this worked');
+});
 /*
 ⇒  gulp
 hi
@@ -6,7 +19,7 @@ hi
 [13:52:32] Task 'default' is not in your gulpfile
 [13:52:32] Please check the documentation for proper gulpfile formatting
 */
-gulp.task('default', function(){
+gulp.task('default', function (){
   console.log("HIIII");
 });
 
@@ -18,4 +31,10 @@ HIIII
 [13:54:06] Finished 'default' after 154 μs
 */
 
-gitgutter
+//gitgutter
+
+gulp.task('upkeep', function () {
+  gulp.watch('js/*',  function () {
+    console.log('Folder has updates');
+  });
+});

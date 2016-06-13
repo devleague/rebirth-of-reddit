@@ -4,10 +4,12 @@
 @import 'date';
 @import 'links';
 @import 'foot';
-@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans);
+@import 'pageheader';
+@import url(https://fonts.googleapis.com/css?family=Acme|BenchNine:300|Alegreya+Sans);
 
-body{
-  font-family: 'Alegreya Sans', sans-serif;
+
+#reddit {
+  background-color: steelblue;
 }
 
 

@@ -6,7 +6,6 @@ $.ajax({
 .done(function(data1) {
   //handle successful response
   newPosts(data1);
-
   // processResponse(data);
 })
 .fail(function() {
@@ -50,52 +49,55 @@ $.ajax({
       var bodyTextDiv = postData('div', 'forumText', forumText);
       postDiv.appendChild(bodyTextDiv);
 
+      var footerDiv = postData('div', 'footer', null);
+      postDiv.appendChild(footerDiv);
+
       var dateDiv = postData('div', 'date', redditDate(results) + ' ' + postTime(results));
-      postDiv.appendChild(dateDiv);
+      footerDiv.appendChild(dateDiv);
 
       var authorDiv = postData('div', 'author', null);
       var authorLink = createLink('a', "https://www.reddit.com/user/" + author, "by: " + author);
       authorDiv.appendChild(authorLink);
-      postDiv.appendChild(authorDiv);
+      footerDiv.appendChild(authorDiv);
 
       var commentDiv = postData('div', 'numComments', null);
       var commentLink = createLink('a', "https://www.reddit.com" + results[i].data.permalink, numComments + " comments");
       commentDiv.appendChild(commentLink);
-      postDiv.appendChild(commentDiv);
+      footerDiv.appendChild(commentDiv);
+    }
+    return redditContainer;
   }
-  return redditContainer;
-}
 
   var redditDate = function(theDate){
     for (var i = 0; i < theDate.length; i++){
-    var date = theDate[i].data.created_utc;
-    var utcDate = new Date(date * 1000);
-    var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-    var month = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-    return days[utcDate.getUTCDay()] + ', ' + month[utcDate.getUTCMonth()] + ' ' + utcDate.getUTCDate(date) + ', ' + utcDate.getUTCFullYear(date);
+      var date = theDate[i].data.created_utc;
+      var utcDate = new Date(date * 1000);
+      var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+      var month = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+      return days[utcDate.getUTCDay()] + ', ' + month[utcDate.getUTCMonth()] + ' ' + utcDate.getUTCDate(date) + ', ' + utcDate.getUTCFullYear(date);
     }
   };
 
   function postTime(time){
     for (var i = 0; 1 < time.length; i++){
-    var utcTime = new Date(time[i].data.created_utc * 1000);
-    var hours = utcTime.getHours();
-    var minutes = utcTime.getMinutes();
-    var amOrPm = hours;
-      if (amOrPm >= 12){
-        amOrPm = 'pm';
-      }else{
-        amOrPm = 'am';
-      }
-    hours = hours % 12;
-    hours = hours % 12;
-      if (hours){
-        hours = hours;
-      }else{
-        hours = 12;
-      }
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    return hours + ':' + minutes + ' ' + amOrPm;
+      var utcTime = new Date(time[i].data.created_utc * 1000);
+      var hours = utcTime.getHours();
+      var minutes = utcTime.getMinutes();
+      var amOrPm = hours;
+        if (amOrPm >= 12){
+          amOrPm = 'pm';
+        }else{
+          amOrPm = 'am';
+        }
+      hours = hours % 12;
+      hours = hours % 12;
+        if (hours){
+          hours = hours;
+        }else{
+          hours = 12;
+        }
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      return hours + ':' + minutes + ' ' + amOrPm;
     }
   }
 

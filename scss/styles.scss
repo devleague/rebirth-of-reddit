@@ -1,7 +1,6 @@
 @import 'title';
 @import 'bodytext';
 @import 'posts';
-@import 'date';
 @import 'links';
 @import 'foot';
 @import 'pageheader';
@@ -10,6 +9,7 @@
 
 #reddit {
   background-color: steelblue;
+  padding: 1px;
 }
 
 

@@ -1,2 +1,10 @@
-.a {
-  background-color: red; }
+#reddit{
+  display: block;
+}
+
+.title{
+  display: block;
+  border: ridge;
+
+}
+

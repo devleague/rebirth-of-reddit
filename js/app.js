@@ -43,12 +43,16 @@ function fetchData () {
     var date = document.createElement('div');
     var created = (new Date(jsonData.data.children[i].data.created)).toString();
     date.innerHTML = "Created Date: " + created;
-    reddit.appendChild(date);
+    title.appendChild(date);
 
     var author = document.createElement('span');
     author.className = "author";
     author.innerHTML = " by " + jsonData.data.children[i].data.author;
     date.appendChild(author);
+
+    var image = document.createElement('img');
+    image.src = "https://i.redditmedia.com/AsKBHOfHXzSQXEQg-aG0ER0EPgp7_7b3s-0B5SRsaNw.jpg?s=a5a3ce7b246678d47a8654dc37c611c9";
+    title.appendChild(image);
 
   }
 

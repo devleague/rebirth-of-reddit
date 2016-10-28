@@ -3,9 +3,9 @@ $.ajax({
   url: 'https://www.reddit.com/r/games.json',
   dataType: 'json'
 })
-.done(function(data1) {
+.done(function(data) {
   //handle successful response
-  newPosts(data1);
+  newPosts(data);
   // processResponse(data);
 })
 .fail(function() {
@@ -16,6 +16,7 @@ $.ajax({
   //Always update the UI with status
 });
 
+// create reddit header
   var redditContainer = document.getElementById('reddit');
   var redditHeader = document.createElement('div');
   redditHeader.id = "main-header";
@@ -30,6 +31,7 @@ $.ajax({
   spanElement.appendChild(redHeaderTxt);
   redditHeader.appendChild(spanElement);
 
+// function to iterate through reddit data and post to browser
   function newPosts(response){
     var results = response.data.children;
     for (var i = 0; i < results.length; i++){
@@ -52,7 +54,7 @@ $.ajax({
       var footerDiv = postData('div', 'footer', null);
       postDiv.appendChild(footerDiv);
 
-      var dateDiv = postData('div', 'date', redditDate(results) + ' ' + postTime(results));
+      var dateDiv = postData('div', 'date', redditDate(results[i].data.created_utc) + ' ' + postTime(results[i].data.created_utc));
       footerDiv.appendChild(dateDiv);
 
       var authorDiv = postData('div', 'author', null);
@@ -68,39 +70,41 @@ $.ajax({
     return redditContainer;
   }
 
-  var redditDate = function(theDate){
+// function to add a date with a format of day, month, day, year
+  function redditDate(theDate){
     for (var i = 0; i < theDate.length; i++){
-      var date = theDate[i].data.created_utc;
-      var utcDate = new Date(date * 1000);
-      var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-      var month = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-      return days[utcDate.getUTCDay()] + ', ' + month[utcDate.getUTCMonth()] + ' ' + utcDate.getUTCDate(date) + ', ' + utcDate.getUTCFullYear(date);
+      var utcDate = new Date(theDate * 1000);
+      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return days[utcDate.getUTCDay()] + ', ' + month[utcDate.getUTCMonth()] + ' ' + utcDate.getUTCDate() + ', ' + utcDate.getUTCFullYear();
     }
-  };
+  }
 
+// function for a time stamp in the AM and PM format
   function postTime(time){
     for (var i = 0; 1 < time.length; i++){
-      var utcTime = new Date(time[i].data.created_utc * 1000);
+      var utcTime = new Date(time * 1000);
       var hours = utcTime.getHours();
       var minutes = utcTime.getMinutes();
       var amOrPm = hours;
-        if (amOrPm >= 12){
+        if (amOrPm >= 12){ // in the 24 hour format > 12 is pm
           amOrPm = 'pm';
         }else{
           amOrPm = 'am';
         }
-      hours = hours % 12;
       hours = hours % 12;
         if (hours){
           hours = hours;
         }else{
           hours = 12;
         }
-      minutes = minutes < 10 ? '0'+minutes : minutes;
+      // minutes less than 10 are returning 1:1 instead of 1:01
+      minutes = ('0' + minutes).slice(-2);
       return hours + ':' + minutes + ' ' + amOrPm;
     }
   }
 
+// function to create elements, class names, and the texts
   function postData(element, className, text){
     var el = document.createElement(element);
     el.className = className;
@@ -108,6 +112,7 @@ $.ajax({
     return el;
   }
 
+// function to create 'a' elements with href attributes and texts (links).
   function createLink(element, url, text){
     var el = document.createElement(element);
     el.setAttribute('href', url);

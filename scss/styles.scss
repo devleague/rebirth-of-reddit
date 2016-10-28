@@ -6,7 +6,9 @@
 @import 'pageheader';
 @import url(https://fonts.googleapis.com/css?family=Acme|BenchNine:300|Alegreya+Sans);
 
-
+body {
+  background-color: steelblue;
+}
 #reddit {
   background-color: steelblue;
   padding: 1px;

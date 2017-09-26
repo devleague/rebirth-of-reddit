@@ -1,0 +1,33 @@
+div.footer {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+div.author {
+  font-size: 10px;
+  font-family: 'Acme', sans-serif;
+  background-color: lavender;
+  float: left;
+  clear: inherit;
+  display: inline-block;
+}
+
+div.date {
+  font-size: 10px;
+  margin-right: 10px;
+  font-family: 'Acme', sans-serif;
+  background-color: lavender;
+  float: left;
+  clear: both;
+  display: inline-block;
+
+}
+
+div.numComments {
+  font-size: 10px;
+  margin-left: 15px;
+  font-family: 'Acme', sans-serif;
+  background-color: lavender;
+  float: left;
+  display: inline-block;
+}

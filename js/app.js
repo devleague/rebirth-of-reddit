@@ -27,7 +27,7 @@ function apiApp(){
 for(let i = 0; i < children.data.children.length; i++){
   let newAnchor = document.createElement('a');
 
-  console.log("http://reddit.com${children.data.children[i].data.permalink");
+  // console.log("http://reddit.com${children.data.children[i].data.permalink");
   let newPost = document.createElement('div');
   newAnchor.className = "postBox";
   ///////NEED TO DO OBJECT WITH HREF METHOD
@@ -35,10 +35,14 @@ for(let i = 0; i < children.data.children.length; i++){
 
   let newGif = document.createElement('div');
   newGif.className = "item-image";
+  
+  let newTitle = document.createElement('div');
+    newTitle.className = "post-title";
+    newTitle.innerHTML = children.data.children[i].data.title;
 
   if(children.data.children[i].data.preview.images[0].variants.gif){
     console.log("Images: ",children.data.children[i].data.preview.images[0].variants.gif);
-    console.log("Video URLs :",children.data.children[i].data.preview.images[0].variants.gif.source.url);
+    // console.log("Video URLs :",children.data.children[i].data.preview.images[0].variants.gif.source.url);
     newGif.style = `background-image: url('${children.data.children[i].data.preview.images[0].variants.gif.source.url};')`; 
   } 
   
@@ -46,6 +50,7 @@ for(let i = 0; i < children.data.children.length; i++){
   ///////??????
 
   newPost.appendChild(newGif);
+  newPost.appendChild(newTitle);
   newAnchor.appendChild(newPost);
   theBody.appendChild(newAnchor);
 }

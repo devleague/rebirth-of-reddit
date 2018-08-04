@@ -1,14 +1,12 @@
 
-/////////MAIN VARIABLES////////
-///////////////////////////////
-var redditJson = 'https://www.reddit.com/r/gifs.json';
+//json data
+var jsonReddit = 'https://www.reddit.com/r/gifs.json';
 
-///////THIS IS THE MAIN WRAPPER FOR VID DIVS///////
+//wrapper for boxes
 var theBody = document.getElementById('contentBox');
 
 
-/////////GET REQUEST///////////
-///////////////////////////////
+//GET Request
 function reqHelper(api, listener){
   var req = new XMLHttpRequest();
   req.addEventListener('load', listener);
@@ -16,13 +14,11 @@ function reqHelper(api, listener){
   req.send();
 }
 
-
-//////////SELF INVOKING FUNCTION//////////
-//////////////////////////////////////////
+//self invoking anonymous function
 (function() {
 function apiApp(){
   var children = JSON.parse(this.responseText);
-  console.log(children);
+  // console.log(children);
   
 for(let i = 0; i < children.data.children.length; i++){
   let newAnchor = document.createElement('a');
@@ -30,24 +26,30 @@ for(let i = 0; i < children.data.children.length; i++){
   // console.log("http://reddit.com${children.data.children[i].data.permalink");
   let newPost = document.createElement('div');
   newAnchor.className = "postBox";
-  ///////NEED TO DO OBJECT WITH HREF METHOD
-  ///////IN ORDER TO HYPERLINK VID DIVS
 
+  //images
   let newGif = document.createElement('div');
   newGif.className = "item-image";
   
+  //titles
   let newTitle = document.createElement('div');
     newTitle.className = "post-title";
     newTitle.innerHTML = children.data.children[i].data.title;
 
+  //Get the reddit JSON data for the post the gif is from, and find the variants property
   if(children.data.children[i].data.preview.images[0].variants.gif){
-    console.log("Images: ",children.data.children[i].data.preview.images[0].variants.gif);
-    // console.log("Video URLs :",children.data.children[i].data.preview.images[0].variants.gif.source.url);
+    //display videos
+    //access it using a combination of json data:
     newGif.style = `background-image: url('${children.data.children[i].data.preview.images[0].variants.gif.source.url};')`; 
+    console.log("Spit out URLs :",children.data.children[i].data.preview.images[0].variants.gif.source.url);
+
   } 
-  
-  ///////NEED TO DO ELSE STATEMENT FOR ????
-  ///////??????
+  else{
+    //display images
+    //access it using a combination of json data:
+    newGif.style = `background-image: url('${children.data.children[i].data.preview.images[0].source.url};')`;
+  }
+
 
   newPost.appendChild(newGif);
   newPost.appendChild(newTitle);
@@ -56,5 +58,5 @@ for(let i = 0; i < children.data.children.length; i++){
 }
 }
 
-reqHelper(redditJson, apiApp);
+reqHelper(jsonReddit, apiApp);
 })(); 

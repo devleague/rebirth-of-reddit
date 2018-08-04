@@ -50,7 +50,7 @@ header {
   font-size: 1.5rem;
   padding: 1rem;
   display: flex;
-  flew-flow: row wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center; }
 
@@ -114,7 +114,7 @@ header {
 .footer-container {
   background: #3a3a3c;
   display: flex;
-  flew-flow: row wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center; }
 

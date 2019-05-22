@@ -54,3 +54,6 @@ You could add features like:
   - Reddit search engine - get data from any subreddit
 
 Oh and.....THAAAAANNKKKS :D
+
+## References
+[Reddit's Wiki on their JSON API](https://github.com/reddit/reddit/wiki/JSON)
